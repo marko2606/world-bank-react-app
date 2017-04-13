@@ -33,7 +33,7 @@ export function getCountries(callback) {
 
 export function fetchDoneRegions() {
     return {
-        type: 'FETCH_DONE_REGIONS_ASYNC'
+        type: 'FETCH_DONE_REGIONS_ASYNC',
     }
 }
 

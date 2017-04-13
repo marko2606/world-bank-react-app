@@ -23,7 +23,6 @@ class App extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    console.log(window.location.href);
     return {
         reducerOne: state.reducerOne
     };

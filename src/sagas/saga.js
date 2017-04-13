@@ -1,14 +1,12 @@
 import "babel-polyfill";
-import {put, takeEvery, call} from 'redux-saga/effects'
+import {put, takeEvery, call, select} from 'redux-saga/effects'
 import axios from 'axios';
-import {store} from '../store/store';
-import {hashHistory} from 'react-router';
 
 
-export function* getRegions() {
+export function* getRegions(action) {
     try {
         const response = yield call(axios.get, 'http://api.worldbank.org/regions?format=json');
-        yield put({type: 'FETCH_DONE_REGIONS', fetchData: response});
+        yield put({type: 'FETCH_DONE_REGIONS', fetchData: response.data});
     } catch (e) {
         console.log(e)
     }
@@ -20,7 +18,8 @@ export function* watchGetRegions() {
 
 export function* getCountries() {
     // only call api if not called before for that page!
-    let {fetchedCountries, currentPage} = store.getState().reducerOne; // continue . . .
+    let store = yield select();
+    let {fetchedCountries, currentPage} = store.reducerOne;
     try {
         //should Call Api
         if (fetchedCountries[currentPage - 1].length === 0) {

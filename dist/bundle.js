@@ -29204,7 +29204,8 @@ var DisplayPages = function (_React$Component) {
                         'span',
                         { key: 'nextPage',
                             onClick: function onClick() {
-                                return _this2.props.previousPage();
+                                _this2.props.nextPage();
+                                _this2.props.fetchDoneCountries();
                             },
                             className: 'paginationNumber'
                         },
@@ -29213,7 +29214,9 @@ var DisplayPages = function (_React$Component) {
                         'span',
                         { key: 'nextPage2',
                             onClick: function onClick() {
-                                return _this2.props.previousPage();
+                                _this2.props.nextPage();
+                                _this2.props.nextPage();
+                                _this2.props.fetchDoneCountries();
                             },
                             className: 'paginationNumber'
                         },
@@ -29225,7 +29228,8 @@ var DisplayPages = function (_React$Component) {
                         'span',
                         { key: 'previousPage',
                             onClick: function onClick() {
-                                return _this2.props.nextPage();
+                                _this2.props.previousPage();
+                                _this2.props.fetchDoneCountries();
                             },
                             className: 'paginationNumber'
                         },
@@ -29234,7 +29238,9 @@ var DisplayPages = function (_React$Component) {
                         'span',
                         { key: 'previousPage2',
                             onClick: function onClick() {
-                                return _this2.props.nextPage();
+                                _this2.props.previousPage();
+                                _this2.props.previousPage();
+                                _this2.props.fetchDoneCountries();
                             },
                             className: 'paginationNumber'
                         },
@@ -29246,7 +29252,8 @@ var DisplayPages = function (_React$Component) {
                         'span',
                         { key: 'nextPage',
                             onClick: function onClick() {
-                                return _this2.props.previousPage();
+                                _this2.props.nextPage();
+                                _this2.props.fetchDoneCountries();
                             },
                             className: 'paginationNumber'
                         },
@@ -29256,7 +29263,8 @@ var DisplayPages = function (_React$Component) {
                         'span',
                         { key: 'previousPage',
                             onClick: function onClick() {
-                                return _this2.props.nextPage();
+                                _this2.props.previousPage();
+                                _this2.props.fetchDoneCountries();
                             },
                             className: 'paginationNumber'
                         },
@@ -29284,7 +29292,8 @@ var DisplayPages = function (_React$Component) {
                             _this3.props.setSpecificPage(1);
                             _this3.props.fetchDoneCountries();
                         },
-                        className: 'fa fa-fast-backward'
+                        className: 'pagination fa fa-fast-backward',
+                        name: 'backwardFull'
                     }),
                     _react2.default.createElement(_reactFontawesome2.default, {
                         className: 'pagination fa fa-backward',
@@ -29304,7 +29313,12 @@ var DisplayPages = function (_React$Component) {
                         }
                     }),
                     _react2.default.createElement(_reactFontawesome2.default, {
-                        className: 'fa fa-fast-forward'
+                        className: 'pagination fa fa-fast-forward',
+                        name: 'forwardFull',
+                        onClick: function onClick() {
+                            _this3.props.setSpecificPage(_this3.props.mainState.pagesTotal);
+                            _this3.props.fetchDoneCountries();
+                        }
                     })
                 )
             );
@@ -29393,7 +29407,7 @@ var _reactRouter = __webpack_require__(121);
 // remember last page
 var url = window.location.href;
 var lastPage = Number(url[url.length - 1]);
-function rememberCurrentPage(dispatch) {
+function rememberCurrentPage() {
     if (lastPage) {
         return lastPage;
     } else {
@@ -29415,8 +29429,7 @@ function reducerOne() {
         currentPage: rememberCurrentPage(),
         countriesEnumById: ['XKX'], // kosovo
         propertiesEnum: ['iso2Code', 'region', 'adminregion', 'incomeLevel', 'lendingType', 'capitalCity', 'longitude', 'latitude'],
-        fetchedCountries: numFetchedCountries(),
-        test: 'test' // call api first time
+        fetchedCountries: numFetchedCountries()
     };
     var action = arguments[1];
 
@@ -34729,7 +34742,7 @@ exports = module.exports = __webpack_require__(630)(undefined);
 
 
 // module
-exports.push([module.i, "body {\n    background-color: lightgray;\n    color: midnightblue;\n}\n\n.pagination {\n    margin:0 10px;\n}\n\n.table {\n    text-align: center;\n    max-width: 800px;\n    border: 3px solid #337ab7;\n}\n.table th {\n    text-align: center;\n}\n.centerDiv {\n    display: flex;\n    justify-content: center;\n}\n\n.countries {\n    display: flex;\n    align-items: center;\n    flex-direction: column;\n}\n\n.paginationNumber {\n    border: 1px solid #337ab7;\n    padding: 5px 20px;\n}\n", ""]);
+exports.push([module.i, "body {\n    background-color: lightgray;\n    color: midnightblue;\n}\n\n.pagination {\n    margin:0 10px;\n}\n\n.table {\n    text-align: center;\n    max-width: 800px;\n    border: 3px solid #337ab7;\n}\n.table th {\n    text-align: center;\n}\n.centerDiv {\n    display: flex;\n    justify-content: center;\n}\n\n.countries {\n    display: flex;\n    align-items: center;\n    flex-direction: column;\n}\n\n.paginationNumber {\n    border: 1px solid #337ab7;\n    padding: 5px 20px;\n    cursor:pointer\n}\n\n.pagination {\n    cursor: pointer;\n}\n", ""]);
 
 // exports
 
