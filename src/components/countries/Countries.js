@@ -9,9 +9,7 @@ import {
     setSpecificPage
 
 } from '../../actions/reducerOneAction';
-import DisplayPages from './displayPages/DisplayPages';
-
-
+import Pagination from './displayPages/Pagination';
 
 class Countries extends React.Component {
     constructor(props) {
@@ -24,9 +22,7 @@ class Countries extends React.Component {
     componentDidMount() {
         this.props.fetchDoneCountries();
     }
-    componentWillReceiveProps() {
-        this.renderTable();
-    }
+
     renderTable() {
         let countriesRendered = [];
         if(this.props.countriesData !== undefined) {
@@ -41,13 +37,13 @@ class Countries extends React.Component {
                     </tr>
                 )
             });
-            this.setState({countriesRendered})
+            return countriesRendered
         }
     }
 
     render() {
         return (
-            <div className="countries">
+            <div className="tableContainer">
                 <h2>Countries</h2>
                     <table className="table table-striped table-bordered">
                         <tbody>
@@ -55,10 +51,10 @@ class Countries extends React.Component {
                             <th>Number</th>
                             <th>Country name</th>
                         </tr>
-                        {this.state.countriesRendered}
+                        {this.renderTable()}
                         </tbody>
                     </table>
-                <DisplayPages
+                <Pagination
                     mainState={this.props.mainState}
                     setTotalPages={this.props.setTotalPages}
                     nextPage={this.props.nextPage}

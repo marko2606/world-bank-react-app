@@ -15,31 +15,28 @@ class Regions extends React.Component {
         this.props.fetchDoneRegions();
     }
 
-    componentWillReceiveProps() {
-        this.renderTable();
-    }
-
     renderTable() {
         let regionsRendered = [];
         if(this.props.regionsData !== undefined) {
+            let numberIndex = 1;
             this.props.regionsData[1].filter((region, index) => {
                 if (region.id !== "") {
                     regionsRendered.push(
                         <tr key={region.name}>
-                            <td>{index + 1}</td>
+                            <td>{numberIndex}</td>
                             <td>{region.name}</td>
                         </tr>
-                    )
+                    );
+                    numberIndex = numberIndex + 1 ;
                 }
             });
         }
-        this.setState({regionsRendered})
+        return regionsRendered;
     }
-
 
     render() {
         return (
-            <div>
+            <div className="tableContainer">
                 <h2>Regions</h2>
                 <table className="table table-striped table-bordered">
                     <tbody>
@@ -47,7 +44,7 @@ class Regions extends React.Component {
                         <th>Number</th>
                         <th>Region name</th>
                     </tr>
-                    {this.state.regionsRendered}
+                    {this.renderTable()}
                     </tbody>
                 </table>
             </div>
